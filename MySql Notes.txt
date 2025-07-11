@@ -1,0 +1,95 @@
+
+
+
+
+
+
+
+
+
+
+
+mysql> insert into student(rollno,name,class,fees)
+    ->     values(11,'raj','btech',2300),
+    ->           (12,'vijay','mtech',3400),
+    ->            (13,'raghuveer','bsc',348),
+    ->           (14,'vijay','msc',3456);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+
+mysql> select * from student;
++--------+-----------+-------+------+
+| rollno | name      | class | fees |
++--------+-----------+-------+------+
+|     11 | raj       | tech  | 2399 |
+|     11 | raj       | btech | 2300 |
+|     11 | raj       | btech | 2300 |
+|     11 | raj       | btech | 2300 |
+|     11 | raj       | btech | 2300 |
+|     12 | vijay     | mtech | 3400 |
+|     13 | raghuveer | bsc   |  348 |
+|     14 | vijay     | msc   | 3456 |
++--------+-----------+-------+------+
+8 rows in set (0.00 sec)
+
+_________________________________________________________
+Basic Questions based on MYSQL QUERY --
+
+1, find records of those students where rollno is 11;
+2. find name & class whose class is bsc;
+3. find name & fees whose rollno is 13;
+4. find all records fo mtech students ;
+________________________________________________________
+1, find records of those students where rollno is 11;
+
+mysql> select * from student where rollno=11;
++--------+------+-------+------+
+| rollno | name | class | fees |
++--------+------+-------+------+
+|     11 | raj  | tech  | 2399 |
+|     11 | raj  | btech | 2300 |
+|     11 | raj  | btech | 2300 |
+|     11 | raj  | btech | 2300 |
+|     11 | raj  | btech | 2300 |
++--------+------+-------+------+
+5 rows in set (0.00 sec)
+___________________________________________________________
+2. find name & class whose class is bsc;
+
+mysql> select name from student where class='bsc';
++-----------+
+| name      |
++-----------+
+| raghuveer |
++-----------+
+1 row in set (0.00 sec)
+_______________________________________________________________
+mysql> select class from student where class ='bsc';
++-------+
+| class |
++-------+
+| bsc   |
++-------+
+1 row in set (0.00 sec)
+__________________________________________________________________
+3. find name & fees whose rollno is 13;
+
+mysql> select fees from student where rollno=14;
++------+
+| fees |
++------+
+| 3456 |
++------+
+1 row in set (0.00 sec)
+___________________________________________________________________
+4. find all records fo mtech students ;
+
+mysql> select * from student where class ='mtech';
++--------+-------+-------+------+
+| rollno | name  | class | fees |
++--------+-------+-------+------+
+|     12 | vijay | mtech | 3400 |
++--------+-------+-------+------+
+1 row in set (0.00 sec)
+___________________________________________________________________
