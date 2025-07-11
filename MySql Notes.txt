@@ -1,3 +1,50 @@
+Common Command for MySql ---
+
+1. show databases;
+
+2.create database databasename;
+
+3.show databases;
+
+4.use databasename;
+
+5.drop database databasename;(it will delete the database)
+
+6.select database();
+
+7.create table tablename;
+
+8.create table tablename(rollno int(10),name varchar(10),classname varchar(10),fees int(10));
+
+9.(To insert value command is) 
+  insert into tablename(columnname ,columnname,....)
+               values( val1,val2......);
+
+example: insert into student(rollno int(10),name varchar(10),classname varchar(10))
+                       values(111,'rahul' , 'Btech'); 
+       
+(for single line values) -------------
+(for multiple  line values) ----------
+ insert into student(rollno int(10),name varchar(10),classname varchar(10))
+                       values(111,'rahul' , 'Btech'),
+                            (111,'rahul' , 'Btech'),
+                            (111,'rahul' , 'Btech'),
+                            (111,'rahul' , 'Btech');
+        
+10.select * from tablename;(to show all details of table )
+
+11.where clause==== use to define condition with sql statement using clause we can find data with condition .
+       
+       select * from tablename where rollno=112;
+        select * from tablename where name='raj';
+        select * from tablename where class= 'btech';
+
+12.To call only name or class or fees from table then command --
+
+     select name from tablename where rollno=112;
+     select fees from tablename where name ='rahul';
+     select class from tablename where class='mtech';
+    
 
 
 
@@ -9,6 +56,7 @@
 
 
 
+_____________________________________________________________________________________
 mysql> insert into student(rollno,name,class,fees)
     ->     values(11,'raj','btech',2300),
     ->           (12,'vijay','mtech',3400),
