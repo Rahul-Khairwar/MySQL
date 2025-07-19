@@ -141,3 +141,44 @@ mysql> select * from student where class ='mtech';
 +--------+-------+-------+------+
 1 row in set (0.00 sec)
 ___________________________________________________________________
+
+
+
+
+mysql>  insert into emp22 values(1,'rahul', 2000),
+    ->              (2,'vijay', 3000),
+    ->              (3,'sanjay', 1500),
+    ->            (4,'ragveer', 12000),
+    ->             (5,'raj',5000);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp22;
++----+---------+--------+
+| id | name    | salary |
++----+---------+--------+
+|  1 | rahul   |   2000 |
+|  2 | vijay   |   3000 |
+|  3 | sanjay  |   1500 |
+|  4 | ragveer |  12000 |
+|  5 | raj     |   5000 |
++----+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select A.name, A.salary As HeigherSalary , B.name,B.salary As LowerSalary
+    -> from emp22 A join emp22 B on (A.salary>B.salary);
++---------+---------------+--------+-------------+
+| name    | HeigherSalary | name   | LowerSalary |
++---------+---------------+--------+-------------+
+| raj     |          5000 | rahul  |        2000 |
+| ragveer |         12000 | rahul  |        2000 |
+| vijay   |          3000 | rahul  |        2000 |
+| raj     |          5000 | vijay  |        3000 |
+| ragveer |         12000 | vijay  |        3000 |
+| raj     |          5000 | sanjay |        1500 |
+| ragveer |         12000 | sanjay |        1500 |
+| vijay   |          3000 | sanjay |        1500 |
+| rahul   |          2000 | sanjay |        1500 |
+| ragveer |         12000 | raj    |        5000 |
++---------+---------------+--------+-------------+
+10 rows in set (0.00 sec)
