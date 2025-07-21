@@ -1,0 +1,622 @@
+MYSQL NOTES
+
+============================================================================================11/07/25===============================================================================
+
+
+1) create database databaseName
+2) show databases;  // it shows all the databases;
+3) use databaseName;
+4) to check database we will use we use  // select database();
+5) to drop a database we use // drop database databaseName for example i have to drop sql3pm so we gonna type drop database sql3pm;
+
+To create a TABLE 
+syntax:-- 
+varchar( character datatype)
+create table tableName (columnName type(size) , coloumnName type(size), ...... );
+
+to add the inside the table :- 
+syntax:-
+insert into tableName (columnName ,coloumnName,....) values(val1,val2 ....)
+
+
+insert into students(rollno,name,class,fees) 
+values(111,'Aaradhya','bTech',45000);     // single record
+
+// insert Multiple Records 
+syntax:-- 
+insert into tableName  (columnName,coloumnName,...) 
+     values(val1,val2,...),
+           (val1,val2,...),
+           ..............);  // last value should end with the (;)
+
+    Select Statement;
+ syntax:-- select * from tableName // use to select all the columnName and its values will display the table;  
+  * select all the columnName 
+  
+// select a particular ColumnName 
+syntax:-- 
+select columnName,columnName .... from tableName;
+         
+                 where clause;-
+where clause is used to define the condition with sql Statement, we can use Data by using where clause we can find data according data according to conditions;  
+  
+
+
+select * from students where rollno=112;
+ // display the Data all the coloumn of 112 rollNo
+
+select columnName from tableName where rollno=111; // * used to select all columns 
+
+Questions 
+1) find records of those students whose rollno is 115;
+2) find name and class whose class is bsc;
+3) find name and fees whose rollno is 112;
+4) find all records of MTech students;
+
+
+-------------------------------------------------------------
+
+create database SQL12PM;
+use SQL12PM;
+
+create table students (rollno int,name varchar(30) , class varchar(30) , fees int);  
+
+insert into students(rollno,name,class,fees) 
+values(111,'Aaradhya','bTech',45000);   
+insert into students(rollno,name,class,fees) 
+values (112,'Akash','bTech',55000),
+	   (113,'Ravi','bCom',55000),
+       (114,'Rajesh','BBA',23000),
+       (115,'Rakesh','Bcom',25000);
+
+select rollno,class from students;
+select * from students where rollno=112;
+select * from students where name='Aaradhya';
+select * from students where class='bcom';
+select * from students where fees>40000;
+
+select name from students where rollno=111;
+
+
+
+select * from students where rollno=115;
+select name,class from students where class='bcom';
+select name,fees from students where rollno=112;
+select * from students where class = 'btech';
+
+
+
+
+============================================================================================12/07/2025========================================================================================
+
+
+
+Update Statement :----
+
+
+syntaxxx--- update tablename set columnname=value, columnname=value,.............
+		where condition
+
+
+DELETE STATEMENT :-  
+
+delete from tablename where condition (ex:- rollno=115)
+
+
+
+OPERATOR :- ( >, <, >= , <= )
+
+syntax :- select * from tablename where fees>= 25000;
+
+OPERATOR  :- ( and & or Operator )
+
+
+(and) operator works when both condition are true where as or operator work when both (or) any one condtion are true. 
+
+
+(and) syntax :--- select * from tablename where class='btech' and fees >=25000;
+
+(or) syntax :--- select * from tablename where class='btech' or fees >=25000;
+
+ 
+OPERATOR  :- ( (in) and (notin) Operator )
+
+(in) syntax :--- select * from tablename where class in ('btech', 'mtech');
+
+(notin) syntax :--- select * from tablename where class nottin ('btech', 'mtech');
+
+
+OPERATOR  :- ( between Operator ) :---  between operator id ussed to find data from one limit to another limit.
+
+Sytaxx:----  sql statement where columnname between limit1 to limit2;
+		(sql statement) = select * from student 
+
+OPERATOR  :-- (like Operator) :---  this is pattern matching operator it used to find records according to pattern 		
+					this operator has two parameteres % (percentage) and _(underscore)
+					percentage (%) is used to drop multiple records, 
+					where as _(underscore) is used to drop one character. 
+
+(%) SYNTAX:----  select * from tablename where name like 'r%';  ( first name starts with r )
+
+(_%) SYNTAX:----  select * from tablename where name like '_a%';  ( second lattername starts with a )
+
+(%) SYNTAX:----  select * from tablename where name like '%a';  ( secondlast lattername ends with a )
+
+(%) SYNTAX:----  select * from tablename where name like '%a_';  ( thirdlast lattername ends with a )
+
+(_) SYNTAX:----  select * from tablename where name like '%a';  ( last lattername ends with a )
+
+(%) SYNTAX:----  select * from tablename where name like '%a%';  ( any name having (an) in there name )
+
+
+
+
+
+14/07/2025
+
+
+
+
+1) Order By Clause :- Order by clause is used to find data in ascending or descending order 
+
+  1)for descending order we can use desc keyword
+  2) for descending we can use asc keyword
+  
+  
+   Syntax:-  
+sql statements :- order by columnName asc/desc
+
+ For example:- 
+ 
+  select * from students order by name;
++--------+----------+-------+-------+
+| rollno | name     | class | fees  |
++--------+----------+-------+-------+
+|    111 | Aaradhya | bTech | 45200 |
+|    112 | Akash    | bTech | 55200 |
+|    112 | Akash    | bTech | 55000 |
+|    114 | Rajesh   | BBA   | 23200 |
+|    114 | Rajesh   | BBA   | 23000 |
+|    115 | Rakesh   | Bcom  | 25000 |
+|    113 | Ravi     | bCom  | 55200 |
+|    113 | Ravi     | bCom  | 55000 |
++--------+----------+-------+-------+
+8 rows in set (0.01 sec)
+
+ select * from students order by fees;
++--------+----------+-------+-------+
+| rollno | name     | class | fees  |
++--------+----------+-------+-------+
+|    114 | Rajesh   | BBA   | 23000 |
+|    114 | Rajesh   | BBA   | 23200 |
+|    115 | Rakesh   | Bcom  | 25000 |
+|    111 | Aaradhya | bTech | 45200 |
+|    112 | Akash    | bTech | 55000 |
+|    113 | Ravi     | bCom  | 55000 |
+|    112 | Akash    | bTech | 55200 |
+|    113 | Ravi     | bCom  | 55200 |
++--------+----------+-------+-------+
+8 rows in set (0.00 sec)
+
+select * from students order by name desc;
+
+it will be ascending order if we dont write the keyword desc;
+as ascending is in default of group by:- 
+ select * from students order by name,fees desc;   // this command is used when the two parameters are same (suppose name) so we gonna compare fees or any other columnName;
+
+
+2) Distinct keyword:- Distinct keyword is used to find unique value from table
+
+syntax:-  select distinct columnName from tableName;
+
+for example: -  Table distinct keyword is used to find a unique data and its only display value only once
++--------+----------+-------+-------+
+| rollno | name     | class | fees  |
++--------+----------+-------+-------+
+|    111 | Aaradhya | bTech | 45200 |
+|    112 | Akash    | bba   | 55200 |
+|    113 | Ravi     | bba   | 55200 |
+|    114 | Rajesh   | BBA   | 23200 |
+|    112 | Akash    | bTech | 55000 |
+|    113 | Ravi     | bCom  | 55000 |
+|    114 | Rajesh   | BBA   | 23000 |
+|    115 | Rakesh   | Bcom  | 25000 |
++--------+----------+-------+-------+
+
+
+ select distinct class from students;
+Output : - 
++-------+
+| class |
++-------+
+| bTech |
+| bba   |
+| bCom  |
++-------+
+
+3)  Union ( joining two table ) 
+
+select * from bankcust;
++--------+--------+----------+
+| custno | name   | city     |
++--------+--------+----------+
+|    101 | sanjay | bhopal   |
+|    102 | manju  | indore   |
+|    103 | sanju  | jabalpur |
+|    104 | rohan  | satna    |
++--------+--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from bankboro;
++--------+--------+----------+
+| custno | name   | city     |
++--------+--------+----------+
+|    101 | sanjay | bhopal   |
+|    102 | manju  | indore   |
+|    105 | manish | ujjain   |
+|    106 | rohit  | jabalpur |
++--------+--------+----------+
+
+ there are two tables and i want to unite these two table so am gonna use the union keyword
+
+select * from bankcust union select * from bankboro;
+
++--------+--------+----------+
+| custno | name   | city     |
++--------+--------+----------+
+|    101 | sanjay | bhopal   |
+|    102 | manju  | indore   |
+|    103 | sanju  | jabalpur |
+|    104 | rohan  | satna    |
+|    105 | manish | ujjain   |
+|    106 | rohit  | jabalpur |
++--------+--------+----------+
+ 
+  4) Intersect   ( it returns the common value which is common 
+              
+    select * from bankcust intersect select * from bankboro;
+
+Output : - 
++--------+--------+--------+
+| custno | name   | city   |
++--------+--------+--------+
+|    101 | sanjay | bhopal |
+|    102 | manju  | indore |
++--------+--------+--------+
+
+
+5)  Minus ( usually minus keyword is not used in MySQL although it is we can use left join )
+      
+      select * from bankcust minus select * from backboro ) it will return the uncommon value from first table
+
+
+
+ 6)  Top keyword is used to return the top element
+    but we cannot use top keyword instead of that we will use limit keyword
+  
+   select * from students limit 2,3;
+                              (indexNo ,  NoOf Values)
+
+
+
+
+
+
+
+
+=========================================================================================15/07/2025=========================================================================================
+
+
+NULL PROPERETY  :-  by default a column can hold NULL values
+
+this enforces field to always 
+
+
+Syntaxx :---   create table tablename (rollno int, name varchar(10) not null, city)
+
+
+UNIQUE COnstraint :-   Prevents duplicate entries in a column or group of columns.
+
+You can have multiple UNIQUE constraints in a table.
+
+Allows one or more NULLs in most MySQL storage engines (e.g., InnoDB).
+
+It is often used on fields like email, username, phone number, etc., where duplicates are not allowed.
+
+SYNTAX:-  	CREATE TABLE users (
+   		 id INT AUTO_INCREMENT PRIMARY KEY,
+  		  email VARCHAR(255) UNIQUE );
+
+
+
+PRIMARY KEY :-    A PRIMARY KEY is a column (or a combination of columns) that:
+
+Must contain unique values.
+
+Cannot contain NULL values.
+
+There can be only one PRIMARY KEY in a table.
+
+
+-SYNTAX :--  CREATE TABLE users (
+   		   id INT PRIMARY KEY,
+  		   name VARCHAR(100) );		
+
+
+
+
+
+
+
+=========================================================================================18/07/25=========================================================================================
+
+                         JOIN
+
+   
+Joun : -- Whenever we connect two or more than two table and create a single table is known as JOIN
+    Join has some types which are discussed below: -
+  It is used to combine data from two or more than two table in the database 
+
+1) INNER JOIN 
+ : - u can lose the data in the inner Join
+    i)  Equie Join : -
+        select * from emp1;
++-------+--------+--------+
+| empno | name   | city   |
++-------+--------+--------+
+|   111 | sachin | bhopal |
+|   112 | rohan  | indore |
+|   113 | sohan  | satna  |
+|   114 | sanjay | ujjain |
++-------+--------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp2;
++-------+-------+--------+
+| empid | dept  | salary |
++-------+-------+--------+
+|   111 | admin |  56700 |
+|   112 | HR    |  37500 |
+|   115 | Sales |  47000 |
+|   116 | Admin |  89000 |
++-------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select emp1.empno,emp1.name,emp1.city,emp2.empid,emp2.dept,emp2.salary from emp1 inner join emp2 on(emp1.empno = emp2.empid);  // here we use  ( = ) where equal to sign is used so thats why its known as  Equie Join;
++-------+--------+--------+-------+-------+--------+
+| empno | name   | city   | empid | dept  | salary |
++-------+--------+--------+-------+-------+--------+
+|   111 | sachin | bhopal |   111 | admin |  56700 |
+|   112 | rohan  | indore |   112 | HR    |  37500 |
++-------+--------+--------+-------+-------+--------+
+2 rows in set (0.01 sec)
+
+  select A.empno,A.name,A.city,B.empid,B.dept,B.salary from emp1 A inner join emp2 B on(A.empno = B.empid); // here A emp1 and B emp2 so here we did aliasing and its used to give alternative names of table
++-------+--------+--------+-------+-------+--------+
+| empno | name   | city   | empid | dept  | salary |
++-------+--------+--------+-------+-------+--------+
+|   111 | sachin | bhopal |   111 | admin |  56700 |
+|   112 | rohan  | indore |   112 | HR    |  37500 |
++-------+--------+--------+-------+-------+--------+
+
+ In this we lose the data because it delete some data from emp1 and some data from emp2 so we lose data;
+       
+    ii) Theta Join 
+( works on condition ( <,<=,>,>= ) 
+   select A.empno,A.name,A.city,B.empid,B.dept,B.salary from emp1 A inner join emp2 B on(A.empno >= B.empid);
++-------+--------+--------+-------+-------+--------+
+| empno | name   | city   | empid | dept  | salary |
++-------+--------+--------+-------+-------+--------+
+|   114 | sanjay | ujjain |   111 | admin |  56700 |
+|   113 | sohan  | satna  |   111 | admin |  56700 |
+|   112 | rohan  | indore |   111 | admin |  56700 |
+|   111 | sachin | bhopal |   111 | admin |  56700 |
+|   114 | sanjay | ujjain |   112 | HR    |  37500 |
+|   113 | sohan  | satna  |   112 | HR    |  37500 |
+|   112 | rohan  | indore |   112 | HR    |  37500 |
++-------+--------+--------+-------+-------+--------+ 
+
+    
+
+
+2) OUTER JOIN: -
+ U cannot lose anything in the
+    i) Left Outer Join :- All records of left table but only records or right table ( based on condition ) 
+              
+            select A.empno,A.name,A.city,B.empid,B.dept,B.salary from emp1 A left join emp2 B on(A.empno = B.empid);
++-------+--------+--------+-------+-------+--------+
+| empno | name   | city   | empid | dept  | salary |
++-------+--------+--------+-------+-------+--------+
+|   111 | sachin | bhopal |   111 | admin |  56700 |
+|   112 | rohan  | indore |   112 | HR    |  37500 |
+|   113 | sohan  | satna  |  NULL | NULL  |   NULL |  // it shows null because the conditions are not followed
+|   114 | sanjay | ujjain |  NULL | NULL  |   NULL |
++-------+--------+--------+-------+-------+--------+
+
+
+   ii) Right Outer Join
+ :-  All records of right table but only records or left table ( based on condition ) 
+
+        select A.empno,A.name,A.city,B.empid,B.dept,B.salary from emp1 A right join emp2 B on(A.empno = B.empid);
++-------+--------+--------+-------+-------+--------+
+| empno | name   | city   | empid | dept  | salary |
++-------+--------+--------+-------+-------+--------+
+|   111 | sachin | bhopal |   111 | admin |  56700 |
+|   112 | rohan  | indore |   112 | HR    |  37500 |
+|  NULL | NULL   | NULL   |   115 | Sales |  47000 |
+|  NULL | NULL   | NULL   |   116 | Admin |  89000 |
++-------+--------+--------+-------+-------+--------+
+
+  iii) Full Outer Join 
+:- We cannot lose any we get both the records
+   
+   select A.empno,A.name,A.city,B.empid,B.dept,B.salary from emp1 A full join emp2 B on(A.empno = B.empid); // Its based on interview purpose we do not use it in MySQL and there are
+    another alternative we can achieve it by combining left join and right join with union it we get a full outer join
+
+      select A.empno,A.name,A.city,B.empid,B.dept,B.salary from emp1 A left join emp2 B on(A.empno = B.empid)
+    -> union
+    -> select A.empno,A.name,A.city,B.empid,B.dept,B.salary from emp1 A right join emp2 B on(A.empno = B.empid)
+    -> ;  
+  // we didn't lose any record in this full join so its helpful for me which can be helpful to display data
++-------+--------+--------+-------+-------+--------+
+| empno | name   | city   | empid | dept  | salary |
++-------+--------+--------+-------+-------+--------+
+|   111 | sachin | bhopal |   111 | admin |  56700 |
+|   112 | rohan  | indore |   112 | HR    |  37500 |
+|   113 | sohan  | satna  |  NULL | NULL  |   NULL |
+|   114 | sanjay | ujjain |  NULL | NULL  |   NULL |
+|  NULL | NULL   | NULL   |   115 | Sales |  47000 |
+|  NULL | NULL   | NULL   |   116 | Admin |  89000 |
++-------+--------+--------+-------+-------+--------+
+    
+       19/07/25
+3) Self Join
+
+  : - Whenever a Table join yo itself we have to create an Alias (compulsory) it means that we are talking about two table here we use the Alias in such a way that MySQL wontb understand if am talking about two tables;
+
+   create table emp11 (empid int, name varchar(10), city varchar(10) ,salesid int, qty int, product varchar(10));
+
+
+mysql> insert into emp11 values(111,'sachin','indore',230,40,'mouse');
+
+
+mysql> insert into emp11 values(112,'rahul','bhopal',112,90,'printer');
+
+
+mysql> insert into emp11 values(113,'manoj','satna',113,60,'plotter');
+
+
+mysql> insert into emp11 values(114,'ravi','ujjain',513,10,'monitor');
+
+
+mysql> select * from emp11;
++-------+--------+--------+---------+------+---------+
+| empid | name   | city   | salesid | qty  | product |
++-------+--------+--------+---------+------+---------+
+|   111 | sachin | indore |     230 |   40 | mouse   |
+|   112 | rahul  | bhopal |     112 |   90 | printer |
+|   113 | manoj  | satna  |     113 |   60 | plotter |
+|   114 | ravi   | ujjain |     513 |   10 | monitor |
++-------+--------+--------+---------+------+---------+
+
+
+mysql> select A.empid,A.name,A.city,B.salesid,B.qty,B.product from emp11 A join emp11 B on (A.empid = B.salesid); 
++-------+-------+--------+---------+------+---------+
+| empid | name  | city   | salesid | qty  | product |
++-------+-------+--------+---------+------+---------+
+|   112 | rahul | bhopal |     112 |   90 | printer |
+|   113 | manoj | satna  |     113 |   60 | plotter |
++-------+-------+--------+---------+------+---------+
+
+
+4) Cartsian Join
+ ( Cross join )   table 1 has 4 records ( M )  and table 2 has 4 records ( N ) and if i did cross join where the product will be 16 records ( M X N ) records
+
+select * from emp1,emp2;
++-------+--------+--------+-------+-------+--------+
+| empno | name   | city   | empid | dept  | salary |
++-------+--------+--------+-------+-------+--------+
+|   114 | sanjay | ujjain |   111 | admin |  56700 |
+|   113 | sohan  | satna  |   111 | admin |  56700 |
+|   112 | rohan  | indore |   111 | admin |  56700 |
+|   111 | sachin | bhopal |   111 | admin |  56700 |
+|   114 | sanjay | ujjain |   112 | HR    |  37500 |
+|   113 | sohan  | satna  |   112 | HR    |  37500 |
+|   112 | rohan  | indore |   112 | HR    |  37500 |
+|   111 | sachin | bhopal |   112 | HR    |  37500 |
+|   114 | sanjay | ujjain |   115 | Sales |  47000 |
+|   113 | sohan  | satna  |   115 | Sales |  47000 |
+|   112 | rohan  | indore |   115 | Sales |  47000 |
+|   111 | sachin | bhopal |   115 | Sales |  47000 |
+|   114 | sanjay | ujjain |   116 | Admin |  89000 |
+|   113 | sohan  | satna  |   116 | Admin |  89000 |
+|   112 | rohan  | indore |   116 | Admin |  89000 |
+|   111 | sachin | bhopal |   116 | Admin |  89000 |
++-------+--------+--------+-------+-------+--------+
+16 rows in set (0.01 sec)
+
+
+   +----+----------+--------+
+| id | name     | salary |
++----+----------+--------+
+|  1 | man sigh |   1500 |
+|  2 | Aaradhya |   5000 |
+|  3 | agam     |   1500 |
+|  4 | mayank   |   6000 |
+|  5 | akash    |   2000 |
+|  6 | aliya    |  12000 |
+|  7 | saad     |   3000 |
+|  8 | shivani  |   4000 |
+|  9 | pranita  |   8000 |
+| 10 | manish   |   9000 |
+| 11 | imran    |   3000 |
++----+----------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select A.name, A.salary as HigherSalary, B.name,B.salary as LowerSalary
+    -> from emp22 A join emp22 B on (A.salary > B.salary);
++----------+--------------+----------+-------------+
+| name     | HigherSalary | name     | LowerSalary |
++----------+--------------+----------+-------------+
+| imran    |         3000 | man sigh |        1500 |
+| manish   |         9000 | man sigh |        1500 |
+| pranita  |         8000 | man sigh |        1500 |
+| shivani  |         4000 | man sigh |        1500 |
+| saad     |         3000 | man sigh |        1500 |
+| aliya    |        12000 | man sigh |        1500 |
+| akash    |         2000 | man sigh |        1500 |
+| mayank   |         6000 | man sigh |        1500 |
+| Aaradhya |         5000 | man sigh |        1500 |
+| manish   |         9000 | Aaradhya |        5000 |
+| pranita  |         8000 | Aaradhya |        5000 |
+| aliya    |        12000 | Aaradhya |        5000 |
+| mayank   |         6000 | Aaradhya |        5000 |
+| imran    |         3000 | agam     |        1500 |
+| manish   |         9000 | agam     |        1500 |
+| pranita  |         8000 | agam     |        1500 |
+| shivani  |         4000 | agam     |        1500 |
+| saad     |         3000 | agam     |        1500 |
+| aliya    |        12000 | agam     |        1500 |
+| akash    |         2000 | agam     |        1500 |
+| mayank   |         6000 | agam     |        1500 |
+| Aaradhya |         5000 | agam     |        1500 |
+| manish   |         9000 | mayank   |        6000 |
+| pranita  |         8000 | mayank   |        6000 |
+| aliya    |        12000 | mayank   |        6000 |
+| imran    |         3000 | akash    |        2000 |
+| manish   |         9000 | akash    |        2000 |
+| pranita  |         8000 | akash    |        2000 |
+| shivani  |         4000 | akash    |        2000 |
+| saad     |         3000 | akash    |        2000 |
+| aliya    |        12000 | akash    |        2000 |
+| mayank   |         6000 | akash    |        2000 |
+| Aaradhya |         5000 | akash    |        2000 |
+| manish   |         9000 | saad     |        3000 |
+| pranita  |         8000 | saad     |        3000 |
+| shivani  |         4000 | saad     |        3000 |
+| aliya    |        12000 | saad     |        3000 |
+| mayank   |         6000 | saad     |        3000 |
+| Aaradhya |         5000 | saad     |        3000 |
+| manish   |         9000 | shivani  |        4000 |
+| pranita  |         8000 | shivani  |        4000 |
+| aliya    |        12000 | shivani  |        4000 |
+| mayank   |         6000 | shivani  |        4000 |
+| Aaradhya |         5000 | shivani  |        4000 |
+| manish   |         9000 | pranita  |        8000 |
+| aliya    |        12000 | pranita  |        8000 |
+| aliya    |        12000 | manish   |        9000 |
+| manish   |         9000 | imran    |        3000 |
+| pranita  |         8000 | imran    |        3000 |
+| shivani  |         4000 | imran    |        3000 |
+| aliya    |        12000 | imran    |        3000 |
+| mayank   |         6000 | imran    |        3000 |
+| Aaradhya |         5000 | imran    |        3000 |
++----------+--------------+----------+-------------+
+5)     
+   Natural Join 
+
+  ( Natural join is an example of Equie Join  )  Natural join is similar to equie join it do not require any condition if and only both table columnName should be same
+  It automatically joins the data naturally on the basis of same ColumnName and DataTypes and we do not have to use On keyword
+ 
+   syntax :- 
+    select * from table1 natural Join table2  ( same column Name and DataType )
